@@ -5,9 +5,9 @@ module "eks" {
   subnets         = module.vpc.private_subnets
 
   tags = {
-    Name = "testing eks cluster for POV - JoeC"
-    owner  = "jcolandro@hashicorp.com"
-    TTL   = "144"
+    Name = "testing eks cluster for POV"
+    owner  = var.owner
+    TTL   = var.ttl
   }
 
   vpc_id = module.vpc.vpc_id
