@@ -1,0 +1,64 @@
+global:
+  enabled: true
+
+  name: consul
+  image: hashicorp/consul-enterprise:1.10.1-ent
+  imageEnvoy: "envoyproxy/envoy-alpine:v1.18.3"
+  datacenter: eks-primary
+
+  tls:
+    enabled: true
+    enableAutoEncrypt: true
+  federation:
+    enabled: true
+    createFederationSecret: true
+
+  acls:
+    manageSystemACLs: true
+    createReplicationToken: true
+
+  gossipEncryption:
+    secretName: consul-gossip-encryption-key
+    secretKey: key
+
+  enableConsulNamespaces: false
+
+controller:
+  enabled: true
+
+server:
+  enabled: true
+  replicas: 1
+  enterpriseLicense:
+    secretName: consul-license
+    secretKey: key
+  connect: true
+  extraConfig: |
+    {
+      "log_level": "DEBUG"
+    }
+
+ui:
+  service:
+    type: LoadBalancer
+
+client:
+  enabled: true
+  grpc: true
+
+connectInject:
+  enabled: true
+  transparentProxy:
+    defaultEnabled: false
+  envoyExtraArgs: --log-level debug
+
+syncCatalog:
+  enabled: true
+
+# Mesh GW config work in progress
+
+# meshGateway:
+#   enabled: true
+#   replicas: 1
+#   wanAddress:
+#     port: 443
