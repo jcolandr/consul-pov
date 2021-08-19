@@ -57,8 +57,13 @@ syncCatalog:
 
 # Mesh GW config work in progress
 
-# meshGateway:
-#   enabled: true
-#   replicas: 1
-#   wanAddress:
-#     port: 443
+meshGateway:
+  enabled: true
+  replicas: 1
+  wanAddress:
+    source: "Service"
+    port: 8443
+  service:
+    enabled: true
+    type: LoadBalancer
+    port: 8443

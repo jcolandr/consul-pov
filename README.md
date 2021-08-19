@@ -1,5 +1,7 @@
 ## Create the EKS cluster
-source aws credentails as env variables and set region variable
+source aws credentails as env variables
+
+set region, owner, and TTL variables in a terraform.tfvars file
 
     cd terraform-aws-eks
     terraform init
