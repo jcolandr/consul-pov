@@ -2,6 +2,8 @@ provider "aws" {
   region = var.region
 }
 
+# This would be the state file of the eks cluster you want to deploy the helm chart to.
+
 data "terraform_remote_state" "eks" {
   backend = "local"
   config = {
