@@ -1,0 +1,8 @@
+data "terraform_remote_state" "eks" {
+    backend = "s3"
+    config {
+        bucket  = "networking-terraform-state-files"
+        key     = "eks-prod01.terraform.tfstate"
+        region  = "us-east-1"
+    }
+}
